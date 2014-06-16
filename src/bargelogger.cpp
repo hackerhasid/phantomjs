@@ -1,6 +1,11 @@
 #include "bargelogger.h"
 #include "networkaccessmanager.h"
+#include<iostream>
+
 #define UNUSED(x) (void)(x)
+
+
+using namespace std;
 
 BargeLogger::BargeLogger (NetworkAccessManager *networkAccessManager) {
   m_networkAccessManager = networkAccessManager;
