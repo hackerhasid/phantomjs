@@ -1,5 +1,6 @@
 #include "bargelogger.h"
 #include "networkaccessmanager.h"
+#define UNUSED(x) (void)(x)
 
 BargeLogger::BargeLogger (NetworkAccessManager *networkAccessManager) {
   m_networkAccessManager = networkAccessManager;
@@ -10,14 +11,18 @@ BargeLogger::BargeLogger (NetworkAccessManager *networkAccessManager) {
 };
 
 void BargeLogger::_resourceRequested(const QVariant& data, QObject *) {
+  UNUSED(data);
   cout << "barge resource requested";
 }
 void BargeLogger::_resourceReceived(const QVariant& data) {
+  UNUSED(data);
   cout << "barge resource received";
 }
 void BargeLogger::_resourceError(const QVariant& data) {
+  UNUSED(data);
   cout << "barge resource error";
 }
 void BargeLogger::_resourceTimeout(const QVariant& data) {
+  UNUSED(data);
   cout << "barge resource timeout";
 }
