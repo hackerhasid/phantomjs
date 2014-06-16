@@ -10,14 +10,14 @@ BargeLogger::BargeLogger (NetworkAccessManager *networkAccessManager) {
 };
 
 void BargeLogger::_resourceRequested(const QVariant& data, QObject *) {
-
+  cout << "barge resource requested";
 }
 void BargeLogger::_resourceReceived(const QVariant& data) {
-
+  cout << "barge resource received";
 }
 void BargeLogger::_resourceError(const QVariant& data) {
-
+  cout << "barge resource error";
 }
 void BargeLogger::_resourceTimeout(const QVariant& data) {
-
+  cout << "barge resource timeout";
 }
