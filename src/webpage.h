@@ -42,6 +42,7 @@ class WebpageCallbacks;
 class NetworkAccessManager;
 class QWebInspector;
 class Phantom;
+class BargeLogger;
 
 class WebPage : public QObject, public QWebFrame::PrintCallback
 {
@@ -509,6 +510,7 @@ private:
     QString m_libraryPath;
     QWebInspector* m_inspector;
     WebpageCallbacks *m_callbacks;
+    BargeLogger *m_bargeLogger;
     bool m_navigationLocked;
     QPoint m_mousePos;
     bool m_ownsPages;

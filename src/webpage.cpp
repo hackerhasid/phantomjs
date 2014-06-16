@@ -66,6 +66,7 @@
 #include "callback.h"
 #include "cookiejar.h"
 #include "system.h"
+#include "bargelogger.h"
 
 #ifdef Q_OS_WIN32
 #include <io.h>
@@ -389,6 +390,8 @@ WebPage::WebPage(QObject *parent, const QUrl &baseUrl)
     connect(m_networkAccessManager, SIGNAL(resourceTimeout(QVariant)),
             SIGNAL(resourceTimeout(QVariant)));
 
+    m_bargeLogger = new BargeLogger(m_networkAccessManager);
+    
     m_customWebPage->setViewportSize(QSize(400, 300));
 }
 
