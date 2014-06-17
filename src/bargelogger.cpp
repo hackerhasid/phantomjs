@@ -9,7 +9,7 @@ using namespace std;
 
 BargeLogger::BargeLogger (NetworkAccessManager *networkAccessManager) {
   m_networkAccessManager = networkAccessManager;
-  openlog("", 0, LOG_USER);
+  openlog("barge", 0, LOG_USER);
   connect(m_networkAccessManager, SIGNAL(resourceRequested(QVariant, QObject *)), this, SLOT(_resourceRequested(QVariant, QObject *)));
   connect(m_networkAccessManager, SIGNAL(resourceReceived(QVariant)), this, SLOT(_resourceReceived(QVariant)));
   connect(m_networkAccessManager, SIGNAL(resourceError(QVariant)), this, SLOT(_resourceError(QVariant)));
