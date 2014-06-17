@@ -1,6 +1,8 @@
 #include "bargelogger.h"
 #include "networkaccessmanager.h"
 #include <syslog.h>
+#include <QJsonDocument>
+#include <QJsonObject>
 
 #define UNUSED(x) (void)(x)
 
@@ -22,9 +24,12 @@ BargeLogger::~BargeLogger() {
 
 void BargeLogger::_resourceRequested(const QVariant& data, QObject *) {
   QMap<QString, QVariant> dataMap = data.toMap();
-  QString url = dataMap.value("url").toString();
-  
-  syslog(LOG_INFO, qPrintable("barge resource requested:" + url));
+
+  QJsonObject obj;
+  obj["task"] = QString("resourceRequested");
+  obj["url"] = dataMap.value("url").toString();
+  QJsonDocument doc = QJsonDocument(obj).toJson(QJsonDocument::Compact);
+  syslog(LOG_INFO, doc.constData());
 }
 void BargeLogger::_resourceReceived(const QVariant& data) {
   QMap<QString, QVariant> dataMap = data.toMap();
