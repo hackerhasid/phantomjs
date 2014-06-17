@@ -1,6 +1,6 @@
 #include "bargelogger.h"
 #include "networkaccessmanager.h"
-//#include<iostream>
+#include <QTextStream>
 
 #define UNUSED(x) (void)(x)
 
@@ -18,20 +18,28 @@ BargeLogger::BargeLogger (NetworkAccessManager *networkAccessManager) {
 void BargeLogger::_resourceRequested(const QVariant& data, QObject *) {
   QMap<QString, QVariant> dataMap = data.toMap();
   QString url = dataMap.value("url").toString();
-  qDebug() << "barge resource requested:" << url << "\n";
+
+  QTextStream cout(stdout);
+  cout << "barge resource requested:" << url << "\n";
 }
 void BargeLogger::_resourceReceived(const QVariant& data) {
   QMap<QString, QVariant> dataMap = data.toMap();
   QString url = dataMap.value("url").toString();
-  qDebug() << "barge resource received:" << url << "\n";
+
+  QTextStream cout(stdout);
+  cout << "barge resource received:" << url << "\n";
 }
 void BargeLogger::_resourceError(const QVariant& data) {
   QMap<QString, QVariant> dataMap = data.toMap();
   QString url = dataMap.value("url").toString();
-  qDebug() << "barge resource error:" << url << "\n";
+
+  QTextStream cout(stdout);
+  cout << "barge resource error:" << url << "\n";
 }
 void BargeLogger::_resourceTimeout(const QVariant& data) {
   QMap<QString, QVariant> dataMap = data.toMap();
   QString url = dataMap.value("url").toString();
-  qDebug() << "barge resource timeout:" << url << "\n";
+
+  QTextStream cout(stdout);
+  cout << "barge resource timeout:" << url << "\n";
 }
