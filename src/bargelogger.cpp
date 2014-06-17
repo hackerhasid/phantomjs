@@ -1,6 +1,6 @@
 #include "bargelogger.h"
 #include "networkaccessmanager.h"
-#include <QTextStream>
+#include <syslog.h>
 
 #define UNUSED(x) (void)(x)
 
@@ -9,18 +9,22 @@ using namespace std;
 
 BargeLogger::BargeLogger (NetworkAccessManager *networkAccessManager) {
   m_networkAccessManager = networkAccessManager;
+  openlog("", 0, LOG_USER);
   connect(m_networkAccessManager, SIGNAL(resourceRequested(QVariant, QObject *)), this, SLOT(_resourceRequested(QVariant, QObject *)));
   connect(m_networkAccessManager, SIGNAL(resourceReceived(QVariant)), this, SLOT(_resourceReceived(QVariant)));
   connect(m_networkAccessManager, SIGNAL(resourceError(QVariant)), this, SLOT(_resourceError(QVariant)));
   connect(m_networkAccessManager, SIGNAL(resourceTimeout(QVariant)), this, SLOT(_resourceTimeout(QVariant)));
 };
 
+BargeLogger::~BargeLogger() {
+  closelog();
+}
+
 void BargeLogger::_resourceRequested(const QVariant& data, QObject *) {
   QMap<QString, QVariant> dataMap = data.toMap();
   QString url = dataMap.value("url").toString();
-
-  QTextStream cout(stdout);
-  cout << "barge resource requested:" << url << "\n";
+  
+  syslog(LOG_INFO, qPrintable("barge resource requested:" + url));
 }
 void BargeLogger::_resourceReceived(const QVariant& data) {
   QMap<QString, QVariant> dataMap = data.toMap();
