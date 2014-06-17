@@ -15,18 +15,35 @@ BargeLogger::BargeLogger (NetworkAccessManager *networkAccessManager) {
   connect(m_networkAccessManager, SIGNAL(resourceTimeout(QVariant)), this, SLOT(_resourceTimeout(QVariant)));
 };
 
-void BargeLogger::_resourceRequested(const QVariantMap& data, QObject *request) {
+void BargeLogger::_resourceRequested(const QVariant& data, QObject *request) {
   if (false) { // TODO: add cdn urls or something?
     request.abort();
   }
-  cout << "barge resource requested: " + data["url"] + "\n";
+
+  QMap<QString, QVariant> dataMap = data.toMap();
+  QString url = dataMap.value("url").toString();
+  cout << "barge resource requested: ";
+  cout << url;
+  cout << "\n";
 }
-void BargeLogger::_resourceReceived(const QVariantMap& data) {
-  cout << "barge resource received: " + data["url"] + "\n";
+void BargeLogger::_resourceReceived(const QVariant& data) {
+  QMap<QString, QVariant> dataMap = data.toMap();
+  QString url = dataMap.value("url").toString();
+  cout << "barge resource received: ";
+  cout << url;
+  cout << "\n";
 }
-void BargeLogger::_resourceError(const QVariantMap& data) {
-  cout << "barge resource error: " + data["url"] + "\n";
+void BargeLogger::_resourceError(const QVariant& data) {
+  QMap<QString, QVariant> dataMap = data.toMap();
+  QString url = dataMap.value("url").toString();
+  cout << "barge resource error: ";
+  cout << url;
+  cout << "\n";
 }
-void BargeLogger::_resourceTimeout(const QVariantMap& data) {
-  cout << "barge resource timeout: " + data["url"] + "\n";
+void BargeLogger::_resourceTimeout(const QVariant& data) {
+  QMap<QString, QVariant> dataMap = data.toMap();
+  QString url = dataMap.value("url").toString();
+  cout << "barge resource timeout: ";
+  cout << data["url"];
+  cout << "\n";
 }
