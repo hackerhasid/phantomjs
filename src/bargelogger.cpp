@@ -15,11 +15,7 @@ BargeLogger::BargeLogger (NetworkAccessManager *networkAccessManager) {
   connect(m_networkAccessManager, SIGNAL(resourceTimeout(QVariant)), this, SLOT(_resourceTimeout(QVariant)));
 };
 
-void BargeLogger::_resourceRequested(const QVariant& data, QObject *request) {
-  if (false) { // TODO: add cdn urls or something?
-    request.abort();
-  }
-
+void BargeLogger::_resourceRequested(const QVariant& data, QObject *) {
   QMap<QString, QVariant> dataMap = data.toMap();
   QString url = dataMap.value("url").toString();
   qDebug() << "barge resource requested:" << url << "\n";
