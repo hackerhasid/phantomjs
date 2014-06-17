@@ -15,19 +15,18 @@ BargeLogger::BargeLogger (NetworkAccessManager *networkAccessManager) {
   connect(m_networkAccessManager, SIGNAL(resourceTimeout(QVariant)), this, SLOT(_resourceTimeout(QVariant)));
 };
 
-void BargeLogger::_resourceRequested(const QVariant& data, QObject *) {
-  UNUSED(data);
-  cout << "barge resource requested";
+void BargeLogger::_resourceRequested(const QVariant& data, QObject *request) {
+  if (false) { // TODO: add cdn urls or something?
+    request.abort();
+  }
+  cout << "barge resource requested: " + data["url"] + "\n";
 }
 void BargeLogger::_resourceReceived(const QVariant& data) {
-  UNUSED(data);
-  cout << "barge resource received";
+  cout << "barge resource received: " + data["url"] + "\n";
 }
 void BargeLogger::_resourceError(const QVariant& data) {
-  UNUSED(data);
-  cout << "barge resource error";
+  cout << "barge resource error: " + data["url"] + "\n";
 }
 void BargeLogger::_resourceTimeout(const QVariant& data) {
-  UNUSED(data);
-  cout << "barge resource timeout";
+  cout << "barge resource timeout: " + data["url"] + "\n";
 }
