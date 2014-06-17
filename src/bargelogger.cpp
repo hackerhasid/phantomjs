@@ -37,5 +37,5 @@ void BargeLogger::_resourceError(const QVariant& data) {
 void BargeLogger::_resourceTimeout(const QVariant& data) {
   QMap<QString, QVariant> dataMap = data.toMap();
   QString url = dataMap.value("url").toString();
-  qDebug << "barge resource timeout:" << url << "\n";
+  qDebug() << "barge resource timeout:" << url << "\n";
 }
