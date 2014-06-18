@@ -1,8 +1,8 @@
 #include "bargelogger.h"
 #include "networkaccessmanager.h"
 #include <syslog.h>
-#include <QtCore/QJsonDocument>
-#include <QtCore/QJsonObject>
+#include <QJsonObject>
+#include <QJsonDocument>
 
 #define UNUSED(x) (void)(x)
 
