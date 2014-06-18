@@ -32,13 +32,13 @@ void BargeLogger::_resourceReceived(const QVariant& data) {
 }
 void BargeLogger::_resourceError(const QVariant& data) {
   QMap<QString, QVariant> dataMap = data.toMap();
-  QString json = QString("{\"task\":\"resourceError\",\"url\":\"%1\",\"errorCode\":\"%2\"}")
-    .arg(dataMap.value("url").toString())
-    .arg(dataMap.value("errorCode").toString());
-  syslog(LOG_ERR, qPrintable(json));
+  // QString json = QString("{\"task\":\"resourceError\",\"url\":\"%1\",\"errorCode\":\"%2\"}")
+  //   .arg(dataMap.value("url").toString())
+  //   .arg(dataMap.value("errorCode").toString());
+  // syslog(LOG_ERR, qPrintable(json));
 }
 void BargeLogger::_resourceTimeout(const QVariant& data) {
   QMap<QString, QVariant> dataMap = data.toMap();
-  QString json = QString("{\"task\":\"resourceTimeout\",\"url\":\"%1\"}").arg(dataMap.value("url").toString());
-  syslog(LOG_ERR, qPrintable(json));
+  // QString json = QString("{\"task\":\"resourceTimeout\",\"url\":\"%1\"}").arg(dataMap.value("url").toString());
+  // syslog(LOG_ERR, qPrintable(json));
 }
