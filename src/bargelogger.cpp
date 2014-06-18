@@ -27,21 +27,18 @@ void BargeLogger::_resourceRequested(const QVariant& data, QObject *) {
 }
 void BargeLogger::_resourceReceived(const QVariant& data) {
   QMap<QString, QVariant> dataMap = data.toMap();
-  QString url = dataMap.value("url").toString();
-  QTextStream cout(stdout);
-  cout << "barge resource received:" << url << "\n";
+  QString json = QString("{\"task\":\"resourceReceived\",\"url\":\"%1\"}").arg(dataMap.value("url").toString());
+  syslog(LOG_INFO, qPrintable(json));
 }
 void BargeLogger::_resourceError(const QVariant& data) {
   QMap<QString, QVariant> dataMap = data.toMap();
-  QString url = dataMap.value("url").toString();
-
-  QTextStream cout(stdout);
-  cout << "barge resource error:" << url << "\n";
+  QString json = QString("{\"task\":\"resourceError\",\"url\":\"%1\",\"errorCode\":\"%2\"}")
+    .arg(dataMap.value("url").toString())
+    .arg(dataMap.value("errorCode").toString());
+  syslog(LOG_ERR, qPrintable(json));
 }
 void BargeLogger::_resourceTimeout(const QVariant& data) {
   QMap<QString, QVariant> dataMap = data.toMap();
-  QString url = dataMap.value("url").toString();
-
-  QTextStream cout(stdout);
-  cout << "barge resource timeout:" << url << "\n";
+  QString json = QString("{\"task\":\"resourceTimeout\",\"url\":\"%1\"}").arg(dataMap.value("url").toString());
+  syslog(LOG_ERR, qPrintable(json));
 }
