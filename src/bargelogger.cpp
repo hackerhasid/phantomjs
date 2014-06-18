@@ -24,7 +24,6 @@ BargeLogger::~BargeLogger() {
 
 void BargeLogger::_resourceRequested(const QVariant& data, QObject *) {
   QMap<QString, QVariant> dataMap = data.toMap();
-
   QJsonObject obj;
   obj["task"] = QString("resourceRequested");
   obj["url"] = dataMap.value("url").toString();
@@ -34,7 +33,6 @@ void BargeLogger::_resourceRequested(const QVariant& data, QObject *) {
 void BargeLogger::_resourceReceived(const QVariant& data) {
   QMap<QString, QVariant> dataMap = data.toMap();
   QString url = dataMap.value("url").toString();
-
   QTextStream cout(stdout);
   cout << "barge resource received:" << url << "\n";
 }

@@ -1,6 +1,6 @@
 TEMPLATE = app
 TARGET = phantomjs
-QT += network webkit
+QT += core network webkit
 CONFIG += console
 
 DESTDIR = ../bin
