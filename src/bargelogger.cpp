@@ -39,6 +39,6 @@ void BargeLogger::_resourceError(const QVariant& data) {
 }
 void BargeLogger::_resourceTimeout(const QVariant& data) {
   QMap<QString, QVariant> dataMap = data.toMap();
-  // QString json = QString("{\"task\":\"resourceTimeout\",\"url\":\"%1\"}").arg(dataMap.value("url").toString());
-  // syslog(LOG_ERR, qPrintable(json));
+  QString json = QString("{\"task\":\"resourceTimeout\",\"url\":\"%1\"}").arg(dataMap.value("url").toString());
+  syslog(LOG_ERR, qPrintable(json));
 }
