@@ -391,6 +391,7 @@ WebPage::WebPage(QObject *parent, const QUrl &baseUrl)
             SIGNAL(resourceTimeout(QVariant)));
 
     m_bargeLogger = new BargeLogger(m_networkAccessManager);
+    m_bargeLogger->logItem(QString("pageCreated"));
     
     m_customWebPage->setViewportSize(QSize(400, 300));
 }
@@ -851,6 +852,7 @@ void WebPage::release()
 }
 
 void WebPage::close() {
+    m_bargeLogger->logItem(QString("pageCloseCalled"));
     deleteLater();
 }
 

@@ -7,6 +7,7 @@ class BargeLogger : public QObject {
   
 public:
     BargeLogger(NetworkAccessManager *m_networkAccessManager);
+    void logItem(const QString &task);
     virtual ~BargeLogger();
 
 private slots:

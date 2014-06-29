@@ -20,6 +20,11 @@ BargeLogger::~BargeLogger() {
   closelog();
 }
 
+void logItem(const QString &task) {
+  QString json = QString("{\"task\":\"%1\"}").arg(task);
+  syslog(LOG_INFO, qPrintable(json));
+}
+
 void BargeLogger::_resourceRequested(const QVariant& data, QObject *) {
   QMap<QString, QVariant> dataMap = data.toMap();
   QString json = QString("{\"task\":\"resourceRequested\",\"url\":\"%1\"}").arg(dataMap.value("url").toString());
